@@ -11,8 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="products")
 public class Product {
-	@Id
-	@GeneratedValue
+	@Id @GeneratedValue
 	@Column(name="product_id")
 	private Integer productId;
 	@Column(name="description")
@@ -41,11 +40,11 @@ public class Product {
 		this.description = description;
 	}
 	
-	public int getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
 	
-	public void setQuantity(int quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 	
