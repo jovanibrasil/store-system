@@ -17,6 +17,14 @@
   </repositories>
   
   <dependencies>
+  
+  		<!-- Hibernate 4.3.6 Final -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.6.Final</version>
+        </dependency>
+  
 	  	<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-impl -->
 		<dependency>
 		    <groupId>com.sun.faces</groupId>

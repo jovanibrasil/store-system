@@ -1,14 +1,12 @@
 package com.store.bean;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.model.ListDataModel;
 
-import com.store.DAO.SupplierDAO;
+import com.store.DAO.MySqlSupplierDAO;
 import com.store.domain.Supplier;
 import com.store.util.JSFUtil;
 
@@ -46,7 +44,7 @@ public class SupplierBean {
 	
 	@PostConstruct // executa antes da página ser visualizada
 	public void populateSuppliersList() {
-		SupplierDAO pDAO = new SupplierDAO();
+		MySqlSupplierDAO pDAO = new MySqlSupplierDAO();
 		this.suppliers = new ArrayList<Supplier>(pDAO.listSuppliers());
 	}
 	
@@ -56,35 +54,42 @@ public class SupplierBean {
 	
 	public void insertSupplier(){
 		
-		SupplierDAO pDAO = new SupplierDAO();
-		if(pDAO.insertSupplier(supplier))
+		try {
+			MySqlSupplierDAO pDAO = new MySqlSupplierDAO();
+			pDAO.insertSupplier(supplier);
+			this.suppliers = new ArrayList<Supplier>(pDAO.listSuppliers());
 			JSFUtil.createSuccessMessage("Success!");
-		else
+		} catch (Exception e) {
+			e.printStackTrace();
 			JSFUtil.createErrorMessage("Error!");
-		this.suppliers = new ArrayList<Supplier>(pDAO.listSuppliers());
+		}
 		
 	}
 	
 	public void removeSupplier(){
 		
-		SupplierDAO pDAO = new SupplierDAO();
-		if(pDAO.deleteSupplier(supplier))
+		try {
+			MySqlSupplierDAO pDAO = new MySqlSupplierDAO();
+			pDAO.deleteSupplier(supplier);
+			this.suppliers = new ArrayList<Supplier>(pDAO.listSuppliers());			
 			JSFUtil.createSuccessMessage("Success!");
-		else
+		} catch (Exception e) {
+			e.printStackTrace();
 			JSFUtil.createErrorMessage("Error!");
-		this.suppliers = new ArrayList<Supplier>(pDAO.listSuppliers());
-		
+		}
+
 	}
 	
 	public void updateSupplier(){
-		
-		SupplierDAO pDAO = new SupplierDAO();
-		if(pDAO.updateSupplier(supplier))
-			JSFUtil.createSuccessMessage("Success!");
-		else
-			JSFUtil.createErrorMessage("Error!");
-		this.suppliers = new ArrayList<Supplier>(pDAO.listSuppliers());
 	
+		try {
+			MySqlSupplierDAO pDAO = new MySqlSupplierDAO();
+			pDAO.updateSupplier(supplier);
+			this.suppliers = new ArrayList<Supplier>(pDAO.listSuppliers());
+			JSFUtil.createSuccessMessage("Success!");
+		} catch (Exception e) {
+			JSFUtil.createErrorMessage("Error!");
+		}
 		
 	}
 	

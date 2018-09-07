@@ -6,8 +6,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.store.DAO.ProductDAO;
-import com.store.DAO.SupplierDAO;
+import com.store.DAO.MySqlProductDAO;
+import com.store.DAO.MySqlSupplierDAO;
 import com.store.domain.Product;
 import com.store.domain.Supplier;
 import com.store.util.JSFUtil;
@@ -55,52 +55,66 @@ public class ProductBean {
 	
 	@PostConstruct // executa antes da pasta ser visualizada
 	public void populateProductsList() {
-		
-		ProductDAO pDAO = new ProductDAO();
-		this.products = new ArrayList<Product>(pDAO.listProducts());
-		
+		try {
+			MySqlProductDAO pDAO = new MySqlProductDAO();
+			this.products = new ArrayList<Product>(pDAO.listProducts());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void initProduct(){
-		this.product = new Product();
-		this.product.setSupplier(new Supplier());
-		
-		SupplierDAO pDAO = new SupplierDAO();
-		this.comboSuppliers = new ArrayList<Supplier>(pDAO.listSuppliers());
+		try {
+			this.product = new Product();
+			this.product.setSupplier(new Supplier());
+			MySqlSupplierDAO pDAO = new MySqlSupplierDAO();
+			this.comboSuppliers = new ArrayList<Supplier>(pDAO.listSuppliers());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
 	public void insertProduct(){
 		
-		ProductDAO pDAO = new ProductDAO();
-		if(pDAO.insertProduct(product))
-			JSFUtil.createSuccessMessage("Success!");
-		else
+		try {
+			MySqlProductDAO pDAO = new MySqlProductDAO();
+			pDAO.insertProduct(product);
+			this.products = new ArrayList<Product>(pDAO.listProducts());
+			JSFUtil.createSuccessMessage("Success!");	
+		} catch (Exception e) {
+			e.printStackTrace();
 			JSFUtil.createErrorMessage("Error!");
-		this.products = new ArrayList<Product>(pDAO.listProducts());
+		}
 		
 	}
 	
 	public void removeProduct(){
 		
-		ProductDAO pDAO = new ProductDAO();
-		if(pDAO.deleteProduct(product))
+		try {
+			MySqlProductDAO pDAO = new MySqlProductDAO();
+			pDAO.deleteProduct(product);
+			this.products = new ArrayList<Product>(pDAO.listProducts());
 			JSFUtil.createSuccessMessage("Success!");
-		else
+		} catch (Exception e) {
+			e.printStackTrace();
 			JSFUtil.createErrorMessage("Error!");
-		this.products = new ArrayList<Product>(pDAO.listProducts());
+		}
 		
 	}
 	
 	public void updateProduct(){
 		
-		ProductDAO pDAO = new ProductDAO();
-		if(pDAO.updateProduct(product))
-			JSFUtil.createSuccessMessage("Success!");
-		else
+		try {
+			MySqlProductDAO pDAO = new MySqlProductDAO();
+			pDAO.updateProduct(product);	
+			this.products = new ArrayList<Product>(pDAO.listProducts());
+			JSFUtil.createSuccessMessage("Success!");	
+		} catch (Exception e) {
+			e.printStackTrace();
 			JSFUtil.createErrorMessage("Error!");
-		this.products = new ArrayList<Product>(pDAO.listProducts());
-	
+		}
+		
 	}
 	
 }

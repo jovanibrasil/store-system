@@ -5,6 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
 public class ConnectionFactory {
 
 	private static final String user = "";
@@ -12,7 +17,20 @@ public class ConnectionFactory {
 	private static final String host = "";
 	private static final String database = "";
 	
-	public static Connection connect() throws SQLException {
+	public static SessionFactory getSessionFactory() {
+		
+		SessionFactory sessionFactory = null;
+		Configuration configObj = new Configuration();
+		configObj.configure("hibernate.cfg.xml");
+		// Since Hibernate Version 4.x, ServiceRegistry Is Being Used
+		ServiceRegistry serviceRegistryObj = new StandardServiceRegistryBuilder().applySettings(configObj.getProperties()).build(); 
+		// Creating Hibernate SessionFactory Instance
+		sessionFactory = configObj.buildSessionFactory(serviceRegistryObj);
+		return sessionFactory;
+
+	}
+	
+	public static Connection getConnection(){
 		
 		try {
 			// Load driver
@@ -32,7 +50,7 @@ public class ConnectionFactory {
 			
 			return connection;
 		} catch (SQLException e) {
-			throw new SQLException("Failed to create connection to database.", e);
+			throw new RuntimeException("Failed to create connection to database.", e);
 		}
 	}
 	
