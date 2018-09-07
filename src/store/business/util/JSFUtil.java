@@ -1,4 +1,4 @@
-package com.store.util;
+package store.business.util;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

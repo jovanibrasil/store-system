@@ -1,4 +1,4 @@
-package com.store.DAO;
+package store.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.store.domain.Product;
-import com.store.domain.Supplier;
-import com.store.factory.ConnectionFactory;
+import store.business.domain.Product;
+import store.business.domain.Supplier;
+import store.persistence.connections.ConnectionFactory;
 
 public class MySqlProductDAO implements ProductDAO {
 

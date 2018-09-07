@@ -1,4 +1,4 @@
-package com.store.DAO;
+package store.persistence;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 
-import com.store.domain.Product;
-import com.store.domain.Supplier;
-import com.store.factory.ConnectionFactory;
+import store.business.domain.Product;
+import store.business.domain.Supplier;
+import store.persistence.connections.ConnectionFactory;
 
 public class MySqlSupplierDAO implements SupplierDAO {
 

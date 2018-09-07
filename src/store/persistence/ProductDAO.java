@@ -1,7 +1,8 @@
-package com.store.DAO;
+package store.persistence;
 
 import java.util.List;
-import com.store.domain.Product;
+
+import store.business.domain.Product;
 
 public interface ProductDAO {
 

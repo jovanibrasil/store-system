@@ -1,4 +1,4 @@
-package com.store.domain;
+package store.business.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

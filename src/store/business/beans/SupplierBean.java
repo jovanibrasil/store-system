@@ -1,4 +1,4 @@
-package com.store.bean;
+package store.business.beans;
 
 import java.util.ArrayList;
 
@@ -6,9 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.store.DAO.MySqlSupplierDAO;
-import com.store.domain.Supplier;
-import com.store.util.JSFUtil;
+import store.business.domain.Supplier;
+import store.business.util.JSFUtil;
+import store.persistence.MySqlSupplierDAO;
 
 @ManagedBean(name = "beanSupplier")
 @ViewScoped

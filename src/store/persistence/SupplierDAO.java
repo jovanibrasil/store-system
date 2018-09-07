@@ -1,7 +1,8 @@
-package com.store.DAO;
+package store.persistence;
 
 import java.util.List;
-import com.store.domain.Supplier;
+
+import store.business.domain.Supplier;
 
 public interface SupplierDAO {
 
