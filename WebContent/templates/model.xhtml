@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<h:html 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css"/>
+	<h:outputScript library="js" name="scripts.js"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>StoreSys</title>
+</h:head>
+<h:body>
+
+	<p:layout fullPage="true">
+	    <p:layoutUnit position="north">
+	    	<ui:insert  name="menu"></ui:insert>
+	    </p:layoutUnit>
+	    <p:layoutUnit position="center">
+	    	<ui:insert name="content"></ui:insert>
+	    </p:layoutUnit>
+	</p:layout>
+
+</h:body>
+
+<p:growl id="msgGlobal" life="3000">
+
+</p:growl>
+
+</h:html>

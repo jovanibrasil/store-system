@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+template="/templates/model.xhtml">
+
+<ui:define name="menu">
+	<ui:include src="/includes/menu.xhtml"></ui:include>
+</ui:define>
+
+<ui:define name="content">
+
+	<!-- O form é necessário para funcionamento dos elementos ajax  -->
+	<h:form id="formSuppliers"> 
+	<p:dataTable id="tblSuppliers" widgetVar="tblsuppliers" value="#{beanSupplier.suppliers}" var="item"
+		paginator="true" rows="7" filteredValue="#{beanSupplier.filteredSuppliers}">
+	
+		<f:facet name="header">Suppliers List</f:facet>
+		
+	    <p:column headerText="Code" sortBy="#{item.supplierId}" filterBy="#{item.supplierId}">
+	        <h:outputText value="#{item.supplierId}"/>
+	    </p:column>
+	 
+	    <p:column headerText="Description" sortBy="#{item.description}" filterBy="#{item.description}">
+	        <h:outputText value="#{item.description}"/>
+	    </p:column>
+	    
+	    <p:column headerText="Options">
+	    
+	    	<p:commandButton icon="ui-icon-trash" oncomplete="PF('dlgRemovesupplier').show();" 
+	    	 update=":formRemoveSupplier:pnRemoveSupplier">
+	    		<f:setPropertyActionListener value="#{item}" target="#{beanSupplier.supplier}"/>
+	    	</p:commandButton>	    
+	    	 
+	    	<p:commandButton icon="ui-icon-pencil" oncomplete="PF('dlgUpdateSupplier').show();" 
+	    	 update=":formUpdateSupplier:pnUpdateSupplier">
+	    		<f:setPropertyActionListener value="#{item}" target="#{beanSupplier.supplier}"/>
+	    	</p:commandButton>
+	    
+	    </p:column>
+	    
+	    <f:facet name="footer">	
+	    	<p:commandButton value="Insert supplier" actionListener="#{beanSupplier.initSupplier}"
+	    	 oncomplete="PF('dlgNewSupplier').show();" update=":formNewSupplier:pnNewSupplier"/>
+	    </f:facet>
+	    
+	</p:dataTable>
+	</h:form>	
+	
+	<p:dialog widgetVar="dlgNewSupplier" closable="false" draggable="false" 
+		resizable="false" header="Insert supplier" modal="true" appendTo="@(body)">
+		<h:form id="formNewSupplier">
+		<h:panelGrid columns="2" id="pnNewSupplier">
+			<p:outputLabel value="Description"/>
+			<p:inputText 
+				size="30" maxlength="50" 
+				value="#{beanSupplier.supplier.description}"
+				required="true"
+				requiredMessage="Missing required field description."	
+			/>
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<p:commandButton value="Save" actionListener="#{beanSupplier.insertSupplier}"
+				oncomplete="handleBoxResult(xhr, status, args, 'dlgNewSupplier', 'tblSuppliers');" 
+				update=":formSuppliers:tblSuppliers :msgGlobal"/> 
+			<p:commandButton value="Cancel" process="@this" onclick="PF('dlgNewSupplier').hide();"/>
+		</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+	<p:dialog widgetVar="dlgRemoveSupplier" closable="false" draggable="false" 
+		resizable="false" header="Remove supplier" modal="true" appendTo="@(body)">
+		<h:form id="formRemoveSupplier">
+		
+		<h:panelGrid columns="2" id="pnRemoveSupplier">
+			<p:outputLabel value="Code"/>
+			<p:outputLabel value="#{beanSupplier.supplier.supplierId}"/>
+			<p:outputLabel value="Description"/>
+			<p:outputLabel value="#{beanSupplier.supplier.description}"/>
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<p:commandButton value="Remove" actionListener="#{beanSupplier.removeSupplier}"
+				oncomplete="handleBoxResult(xhr, status, args, 'dlgRemoveSupplier', 'tblSuppliers');" 
+				update=":formSuppliers:tblSuppliers :msgGlobal"/> 
+			<p:commandButton value="Cancel" process="@this" onclick="PF('dlgRemoveSupplier').hide();"/>
+		</h:panelGrid>
+		
+		</h:form>
+	</p:dialog>
+
+	<p:dialog widgetVar="dlgUpdateSupplier" closable="false" draggable="false" 
+		resizable="false" header="Update supplier" modal="true" appendTo="@(body)">
+		<h:form id="formUpdateSupplier">
+		
+		<h:panelGrid columns="2" id="pnUpdateSupplier">
+			<p:outputLabel value="Code"/>
+			<p:outputLabel value="#{beanSupplier.supplier.supplierId}"/>
+			<p:outputLabel value="Description"/>
+			<p:inputText 
+				value="#{beanSupplier.supplier.description}"
+				required="true"
+				requiredMessage="Missing required field description."	
+			/>
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<p:commandButton value="Update" actionListener="#{beanSupplier.updateSupplier}"
+				oncomplete="handleBoxResult(xhr, status, args, 'dlgUpdateSupplier', 'tblSuppliers');" 
+				update=":formSuppliers:tblSuppliers :msgGlobal"/> 
+			<p:commandButton value="Cancel" process="@this" onclick="PF('dlgUpdateSupplier').hide();"/>
+		</h:panelGrid>
+		
+		</h:form>
+	</p:dialog>
+
+
+</ui:define>
+
+</ui:composition>

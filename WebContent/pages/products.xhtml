@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+xmlns:p="http://primefaces.org/ui"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+template="/templates/model.xhtml">
+
+<ui:define name="menu">
+	<ui:include src="/includes/menu.xhtml"></ui:include>
+</ui:define>
+
+<ui:define name="content">
+
+	<!-- O form é necessário para funcionamento dos elementos ajax  -->
+	<h:form id="formProducts"> 
+	<p:dataTable id="tblProducts" widgetVar="tblProducts" value="#{beanProduct.products}" var="item"
+		paginator="true" rows="7" filteredValue="#{beanProduct.filteredProducts}">
+	
+		<f:facet name="header">Products List</f:facet>
+		
+	    <p:column headerText="Code" sortBy="#{item.productId}" filterBy="#{item.productId}">
+	        <h:outputText value="#{item.productId}"/>
+	    </p:column>
+	 
+	    <p:column headerText="Description" sortBy="#{item.description}" filterBy="#{item.description}">
+	        <h:outputText value="#{item.description}"/>
+	    </p:column>
+	    
+	    <p:column headerText="Price" sortBy="#{item.price}" filterBy="#{item.price}">
+	        <h:outputText value="#{item.price}"/>
+	    </p:column>
+	    
+	    <p:column headerText="Quantity" sortBy="#{item.quantity}" filterBy="#{item.quantity}">
+	        <h:outputText value="#{item.quantity}"/>
+	    </p:column>
+	    
+	    <p:column headerText="Supplier" sortBy="#{item.supplier.description}" filterBy="#{item.supplier.description}">
+	        <h:outputText value="#{item.supplier.description}"/>
+	    </p:column>
+	    
+	    <p:column headerText="Options">
+	    
+	    	<p:commandButton icon="ui-icon-trash" oncomplete="PF('dlgRemoveProduct').show();" 
+	    	 update=":formRemoveProduct:pnRemoveProduct">
+	    		<f:setPropertyActionListener value="#{item}" target="#{beanProduct.product}"/>
+	    	</p:commandButton>	    
+	    	 
+	    	<p:commandButton icon="ui-icon-pencil" oncomplete="PF('dlgUpdateProduct').show();" 
+	    	 actionListener="#{beanProduct.initProduct}"
+	    	 update=":formUpdateProduct:pnUpdateProduct">
+	    		<f:setPropertyActionListener value="#{item}" target="#{beanProduct.product}"/>
+	    	</p:commandButton>
+	    
+	    </p:column>
+	    
+	    <f:facet name="footer">	
+	    	<p:commandButton value="Insert Product" actionListener="#{beanProduct.initProduct}"
+	    	 oncomplete="PF('dlgNewProduct').show();" update=":formNewProduct:pnNewProduct"/>
+	    </f:facet>
+	    
+	</p:dataTable>
+	</h:form>	
+	
+	<p:dialog widgetVar="dlgNewProduct" closable="false" draggable="false" 
+		resizable="false" header="Insert Product" modal="true" 
+		appendTo="@(body)">
+		<h:form id="formNewProduct">
+		<h:panelGrid columns="2" id="pnNewProduct">
+			<p:outputLabel value="Description"/>
+			<p:inputText 
+				size="30" maxlength="50" value="#{beanProduct.product.description}"
+				required="true"
+				requiredMessage="Missing required field description."	
+			/>
+			<p:outputLabel value="Price"/>
+			<p:inputText 
+				value="#{beanProduct.product.price}"
+				required="true"
+				requiredMessage="Missing required field price."	
+			/>
+			<p:outputLabel value="Quantity"/>
+			<p:inputText 
+				value="#{beanProduct.product.quantity}"
+				required="true"
+				requiredMessage="Missing required field quantity."	
+			/>
+			<p:outputLabel value="Supplier"/>
+			<p:selectOneMenu 
+				value="#{beanProduct.product.supplier.supplierId}"
+				filter="true">
+				<f:selectItem itemValue="" itemLabel="Select an supplier"/>
+				 
+				 <!-- 
+				 
+				 	f:selectItems
+				 		itemValue - O que vai ser guardado
+				 		itemLabel - O que vai ser mostrado
+				 -->
+				
+				<f:selectItems 
+					value="#{beanProduct.comboSuppliers}"
+					var="item"	
+					itemValue="#{item.supplierId}"
+					itemLabel="#{item.description}"
+				></f:selectItems>
+			</p:selectOneMenu>
+		
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<p:commandButton value="Save" actionListener="#{beanProduct.insertProduct}"
+				oncomplete="handleBoxResult(xhr, status, args, 'dlgNewProduct', 'tblProducts');"
+				update=":formProducts:tblProducts :msgGlobal"/> 
+			<p:commandButton value="Cancel" process="@this" onclick="PF('dlgNewProduct').hide();"/>
+		</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+	<p:dialog widgetVar="dlgRemoveProduct" closable="false" draggable="false" 
+		resizable="false" header="Remove Product" modal="true" appendTo="@(body)">
+		<h:form id="formRemoveProduct">
+		
+		<h:panelGrid columns="2" id="pnRemoveProduct">
+			<p:outputLabel value="Code"/>
+			<p:outputLabel value="#{beanProduct.product.productId}"/>
+			<p:outputLabel value="Description"/>
+			<p:outputLabel value="#{beanProduct.product.description}"/>
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<p:commandButton value="Remove" actionListener="#{beanProduct.removeProduct}"
+				oncomplete="handleBoxResult(xhr, status, args, 'dlgRemoveProduct', 'tblProducts');"
+				update=":formProducts:tblProducts :msgGlobal"/> 
+			<p:commandButton value="Cancel" process="@this" onclick="PF('dlgRemoveProduct').hide();"/>
+		</h:panelGrid>
+		
+		</h:form>
+	</p:dialog>
+
+	<p:dialog widgetVar="dlgUpdateProduct" closable="false" draggable="false" 
+		resizable="false" header="Update Product" modal="true" appendTo="@(body)">
+		<h:form id="formUpdateProduct">
+		
+		<h:panelGrid columns="2" id="pnUpdateProduct">
+			<p:outputLabel value="Code"/>
+			<p:outputLabel value="#{beanProduct.product.productId}"/>
+			<p:outputLabel value="Description"/>
+			<p:inputText 
+				value="#{beanProduct.product.description}"
+				required="true"
+				requiredMessage="Missing required field description."	
+			/>
+			<p:outputLabel value="Price"/>
+			<p:inputText 
+				value="#{beanProduct.product.price}"
+				required="true"
+				requiredMessage="Missing required field description."	
+			/>
+			<p:outputLabel value="Quantity"/>
+			<p:inputText 
+				value="#{beanProduct.product.quantity}"
+				required="true"
+				requiredMessage="Missing required field quantity."	
+			/>
+			
+			<p:outputLabel value="Supplier"/>
+			<p:selectOneMenu 
+				value="#{beanProduct.product.supplier.supplierId}"
+				filter="true">
+				<f:selectItem itemValue="" itemLabel="Select an supplier"/>
+				<f:selectItems 
+					value="#{beanProduct.comboSuppliers}"
+					var="item"	
+					itemValue="#{item.supplierId}"
+					itemLabel="#{item.description}"
+				></f:selectItems>
+			</p:selectOneMenu>
+			
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<p:commandButton value="Update" actionListener="#{beanProduct.updateProduct}"
+				oncomplete="handleBoxResult(xhr, status, args, 'dlgUpdateProduct', 'tblProducts');" 
+				update=":formProducts:tblProducts :msgGlobal"/> 
+			<p:commandButton value="Cancel" process="@this" onclick="PF('dlgUpdateProduct').hide();"/>
+		</h:panelGrid>
+		
+		</h:form>
+	</p:dialog>
+
+</ui:define>
+
+</ui:composition>
