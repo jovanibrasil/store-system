@@ -1,4 +1,4 @@
-package store.business.beans;
+package store.presentation;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,6 @@ import store.business.domain.Product;
 import store.business.domain.Supplier;
 import store.persistence.MySqlProductDAO;
 import store.persistence.MySqlSupplierDAO;
-import store.presentation.util.JSFUtil;
 
 @ManagedBean(name = "beanProduct") // managed beans são beans Java gerenciáveis pelo JSF 
 @ViewScoped
