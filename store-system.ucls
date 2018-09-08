@@ -56,8 +56,8 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </interface>  
-  <class id="7" language="java" name="store.business.beans.SupplierBean" project="store-system" 
-    file="/store-system/src/store/business/beans/SupplierBean.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="store.presentation.SupplierBean" project="store-system" 
+    file="/store-system/src/store/presentation/SupplierBean.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="469" y="496"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -65,8 +65,8 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="store.business.beans.ProductBean" project="store-system" 
-    file="/store-system/src/store/business/beans/ProductBean.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="store.presentation.ProductBean" project="store-system" 
+    file="/store-system/src/store/presentation/ProductBean.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="337" y="46"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
@@ -75,128 +75,156 @@
     </display>  
   </class>  
   <association id="9">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="10" name="suppliers"/>      
-      <multiplicity id="11" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="10" name="product">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="11" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <dependency id="12">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="14">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="15" name="product"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="17">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <association id="18">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="19" name="supplier"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="21">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="22" name="filteredSuppliers"/>      
-      <multiplicity id="23" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="24">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <realization id="25">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="27">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="28" name="comboSuppliers"/>      
-      <multiplicity id="29" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="30">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="31">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="32" name="filteredProducts"/>      
-      <multiplicity id="33" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="35">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
-  <dependency id="36">    
+  <dependency id="13">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="14">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <dependency id="37">    
+  <dependency id="15">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="16">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="17" name="products">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="18" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="19">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="21">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="22" name="filteredSuppliers">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="23" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="24">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="25" name="supplier">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="27">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="28">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="29" name="comboSuppliers">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="31">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <dependency id="32">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <association id="38">    
+  <dependency id="33">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="35">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <association id="36">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="37" name="suppliers">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="38" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="39">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="40">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="41" name="filteredProducts">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="42" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="39" name="supplier">        
+      <attribute id="44" name="supplier">        
         <position height="0" width="0" x="-14" y="284"/>      
       </attribute>      
-      <multiplicity id="40" minimum="0" maximum="1">        
+      <multiplicity id="45" minimum="0" maximum="1">        
         <position height="0" width="0" x="-14" y="284"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="41">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="42" name="products"/>      
-      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="44">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <dependency id="45">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
   <dependency id="46">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
     sort-features="false" accessors="true" visibility="true">    
