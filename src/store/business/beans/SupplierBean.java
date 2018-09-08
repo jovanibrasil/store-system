@@ -7,8 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import store.business.domain.Supplier;
-import store.business.util.JSFUtil;
 import store.persistence.MySqlSupplierDAO;
+import store.presentation.util.JSFUtil;
 
 @ManagedBean(name = "beanSupplier")
 @ViewScoped

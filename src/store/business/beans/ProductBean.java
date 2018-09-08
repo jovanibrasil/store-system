@@ -8,11 +8,11 @@ import javax.faces.bean.ViewScoped;
 
 import store.business.domain.Product;
 import store.business.domain.Supplier;
-import store.business.util.JSFUtil;
 import store.persistence.MySqlProductDAO;
 import store.persistence.MySqlSupplierDAO;
+import store.presentation.util.JSFUtil;
 
-@ManagedBean(name = "beanProduct")
+@ManagedBean(name = "beanProduct") // managed beans são beans Java gerenciáveis pelo JSF 
 @ViewScoped
 public class ProductBean {
 
