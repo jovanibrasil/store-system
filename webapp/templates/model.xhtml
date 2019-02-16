@@ -12,23 +12,26 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	<h:outputStylesheet library="css" name="style.css"/>
 	<h:outputScript library="js" name="scripts.js"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>StoreSys</title>
+	<title><ui:insert name="title">Inventory Management System</ui:insert></title>
 </h:head>
-<h:body>
 
+<h:body>
 	<p:layout fullPage="true">
+	    <!-- Header -->
 	    <p:layoutUnit position="north">
-	    	<ui:insert  name="menu"></ui:insert>
+	    	<ui:insert name="header"></ui:insert>
 	    </p:layoutUnit>
+	    <!-- Page content -->
 	    <p:layoutUnit position="center">
 	    	<ui:insert name="content"></ui:insert>
 	    </p:layoutUnit>
+	    <!-- Footer -->
+	    <p:layoutUnit position="south">
+	    	<ui:insert name="footer"></ui:insert>
+	    </p:layoutUnit>
 	</p:layout>
-
 </h:body>
 
-<p:growl id="msgGlobal" life="3000">
-
-</p:growl>
+<p:growl id="msgGlobal" life="3000"></p:growl>
 
 </h:html>

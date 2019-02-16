@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+.ui-layout-north {
+    z-index:20 !important;
+    overflow:visible !important;;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+    overflow:visible !important;
+}
+
+body {
+    background-color: #FFFFFF;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    font-weight: normal;
+}
+
+header {
+	padding: 5px;	
+}
+
+menubar {
+	position: absolute;
+}
+
+menuitem {
+	margin: 0;
+  	position: absolute;
+  	top: 50%;
+  	-ms-transform: translateY(-50%);
+ 	transform: translateY(-50%);
+}
+
+separator {
+	margin-top: 20px;
+}
+
+footer {
+	padding: 0px 10px;
+	margin-bottom: 10px;
+}

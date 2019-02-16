@@ -48,6 +48,7 @@ public class SupplierBean {
 	}
 	
 	public void initSupplier(){
+		System.out.println("initSupplier");
 		this.supplier = new Supplier();
 	}
 	

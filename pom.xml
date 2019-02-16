@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>store-system</groupId>
   <artifactId>store-system</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>war</packaging>
   <name>store-system</name>
   <description>A beautiful Java store system</description>
@@ -16,15 +16,22 @@
     </repository>
   </repositories>
   
-  <dependencies>
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   
+  <dependencies>
+  		<dependency>
+	      <groupId>com.ocpsoft</groupId>
+	      <artifactId>prettyfaces-jsf2</artifactId>
+	      <version>3.3.3</version>
+	    </dependency>
   		<!-- Hibernate 4.3.6 Final -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>4.3.6.Final</version>
         </dependency>
-  
 	  	<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-impl -->
 		<dependency>
 		    <groupId>com.sun.faces</groupId>
@@ -47,7 +54,7 @@
 		<dependency>
 		    <groupId>org.primefaces</groupId>
 		    <artifactId>primefaces</artifactId>
-		    <version>4.0</version>
+		    <version>6.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
@@ -59,8 +66,8 @@
   
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <finalName>invent-sys</finalName>
     <plugins>
-    
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
@@ -74,11 +81,9 @@
         <version>3.2.1</version>
         <configuration>
           <warSourceDirectory>WebContent</warSourceDirectory>
-        </configuration>
+         </configuration>
       </plugin>
-    
     </plugins>
-    
-    
   </build>
+  
 </project>

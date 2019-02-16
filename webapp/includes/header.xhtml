@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<body>
+		<ui:composition>
+			<header>
+			 	<h:form>	
+					<p:menubar>
+						<p:menuitem>
+						    <h:link>
+						        <h:graphicImage library="images" name="header-icon.ico" height="30" />
+						    </h:link>
+						</p:menuitem>
+							
+						<p:menuitem value="Menu" action="/pages/index?faces-redirect=true" ></p:menuitem>
+			
+						<p:submenu label="File">
+							<p:menuitem value="Company" url="#" ></p:menuitem>
+							<p:menuitem value="Site" url="#" ></p:menuitem>
+							<p:menuitem value="Exit" url="#" ></p:menuitem>
+						</p:submenu>
+						
+						<p:submenu label="Register">
+							<p:menuitem value="Products" action="/pages/products?faces-redirect=true" ></p:menuitem>
+							<p:menuitem value="Suppliers" action="/pages/suppliers?faces-redirect=true" ></p:menuitem>
+						</p:submenu>
+						
+						<p:submenu label="Settings">
+						</p:submenu>
+						<p:submenu label="Help"></p:submenu> 
+						
+					</p:menubar>
+				</h:form>
+			</header>
+		</ui:composition>
+	</body>
+	
+</html>

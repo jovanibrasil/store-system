@@ -6,3 +6,10 @@
     version="2.2">
 
 </faces-config>
+
+
+<!--
+	<application>
+    	<resource-handler>resources.jsf.MyResourceHandler</resource-handler>
+	</application>
+ -->

@@ -1,0 +1,20 @@
+<pretty-config xmlns="http://ocpsoft.org/prettyfaces/3.3.3" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               >
+   
+      <url-mapping id="index">
+          <pattern value="/" />
+          <view-id value="/pages/index.xhtml" />
+      </url-mapping>
+
+      <url-mapping id="products">
+          <pattern value="/products" />
+          <view-id value="/pages/products.xhtml" />
+      </url-mapping>
+
+      <url-mapping id="suppliers">
+          <pattern value="/suppliers" />
+          <view-id value="/pages/suppliers.xhtml" />
+      </url-mapping>
+
+</pretty-config>
