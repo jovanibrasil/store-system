@@ -11,11 +11,15 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<h:outputStylesheet library="css" name="style.css"/>
 	<h:outputScript library="js" name="scripts.js"/>
+	<h:outputScript src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></h:outputScript>
+ 
+	<h:outputScript library="js" name="jquery.maskMoney.min.js"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><ui:insert name="title">Inventory Management System</ui:insert></title>
 </h:head>
 
 <h:body>
+
 	<p:layout fullPage="true">
 	    <!-- Header -->
 	    <p:layoutUnit position="north">
@@ -30,6 +34,7 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	    	<ui:insert name="footer"></ui:insert>
 	    </p:layoutUnit>
 	</p:layout>
+	
 </h:body>
 
 <p:growl id="msgGlobal" life="3000"></p:growl>

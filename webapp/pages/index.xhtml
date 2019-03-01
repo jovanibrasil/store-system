@@ -27,7 +27,9 @@ template="/templates/model.xhtml">
 		    </p:column>
 		    
 		    <p:column headerText="Price" sortBy="#{item.price}" filterBy="#{item.price}">
-		        <h:outputText value="#{item.price}"/>
+		        <h:outputText value="#{item.price}">
+		        	<f:convertNumber type="currency" locale="pt_BR" />
+		        </h:outputText>
 		    </p:column>
 		    
 		    <p:column headerText="Quantity" sortBy="#{item.quantity}" filterBy="#{item.quantity}">
